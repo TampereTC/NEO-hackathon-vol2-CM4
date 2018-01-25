@@ -1,6 +1,10 @@
-FROM gcc:latest
-EXPOSE 16001
+FROM gcc:latest as compiler 
 ADD hello.c .
-RUN ["gcc",	"./hello.c", "-o", "./hello"]
-RUN ["chmod", "+x", "./hello"]
+RUN ["gcc",	"./hello.c", "-o", "/tmp/hello"]
+RUN ["chmod", "+x", "/tmp/hello"]
+
+
+FROM scratch
+EXPOSE 16002
+COPY --from=compiler /tmp/hello . 
 CMD ["./hello"]
