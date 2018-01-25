@@ -1,0 +1,6 @@
+FROM gcc:latest
+EXPOSE 16001
+ADD hello.c .
+RUN ["gcc",	"./hello.c", "-o", "./hello"]
+RUN ["chmod", "+x", "./hello"]
+CMD ["./hello"]
