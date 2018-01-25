@@ -1,4 +1,4 @@
 FROM scratch
 EXPOSE 16000
-ADD hello .
-CMD ["./hello"]
+ADD a .
+CMD ["./a"]
