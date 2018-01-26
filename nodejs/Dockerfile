@@ -1,4 +1,4 @@
-FROM node:6.9.2
+FROM node:6.9.2-alpine
 EXPOSE 3000
 COPY index.html .
 COPY app.js .
