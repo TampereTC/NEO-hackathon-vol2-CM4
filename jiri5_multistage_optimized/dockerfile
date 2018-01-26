@@ -1,0 +1,10 @@
+FROM gcc:latest as compiler 
+WORKDIR /compiling/
+ADD hello.c .
+RUN gcc ./hello.c -static -ffunction-sections -fdata-sections -Os -Wl,--gc-sections -o ./hello 
+
+FROM scratch
+WORKDIR /running/
+COPY --from=compiler /compiling/hello .
+EXPOSE 16011
+CMD ["./hello"]
