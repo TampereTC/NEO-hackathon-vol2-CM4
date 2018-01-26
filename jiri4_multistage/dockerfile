@@ -1,0 +1,10 @@
+FROM gcc:latest as compiler 
+WORKDIR /compiling/
+ADD hello.c .
+RUN gcc ./hello.c -static -o ./hello 
+
+FROM scratch
+WORKDIR /running/
+COPY --from=compiler /compiling/hello .
+EXPOSE 16007
+CMD ["./hello"]
